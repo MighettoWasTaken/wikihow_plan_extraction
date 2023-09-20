@@ -1,11 +1,11 @@
 ## test.py requires: 
 
-### csv named 'webextractdata.csv' 
+1. csv named 'webextractdata.csv' 
 
 this file contains: "file,url,time,goal,steps,index\n" before you run the code. 
 
-### txt named 'index.txt' 
+2. txt named 'index.txt' 
 
 this file contains: starting index for parsing. 26 default as all indexes before 26 are catagory pages, which are not useful. 
 
-### Offline wikihow with scraped wikihow hmtl's 
+3. Offline wikihow with scraped wikihow hmtl's 
