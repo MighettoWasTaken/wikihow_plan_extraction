@@ -77,7 +77,7 @@ def extract_wikihow(url, content):
       if (item.text != 'Steps'):
         steps.append(item.text.replace("\\n", ""))
       #print(item.get_text())
-    output.append((title, steps))
+    output.append([title.replace("\\n", ""), steps])
     
   else: 
       # process method pages 
@@ -97,15 +97,26 @@ def extract_wikihow(url, content):
                 break 
             elif item.get('class') == ['mw-headline']: 
                 if curr_goal != end_step: 
-                  output.append((curr_goal.text, curr_steps))
+                  output.append([curr_goal.text.replace("\\n", ""), curr_steps])
                   #print(output)
                 curr_goal = item 
                 curr_steps = []
                 
             else: 
+                #print(soup.index(item))
                 curr_steps.append(item.text.replace("\\n", ""))
 
       # same as nonmethod, contains the steps as raw html 
+  indexes = []
+  for item in output: 
+    for step in item[1]: 
+      start = soup.text.index(step)
+      indexes.append((start, start + len(step)))
+    item.append(indexes)
+    indexes = []
+
+
+
 
 
   return output
